@@ -14,12 +14,12 @@ import java.time.ZoneId;
 
 @WebFilter(value = "/time")
 public class  TimezoneValidateFilter extends HttpFilter {
-    public static final String TIME_ZONE_PATH = "timezone";
+
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        if(Utils.hasParameter(req, TIME_ZONE_PATH)) {
+        if(Utils.hasParameter(req, Utils.TIME_ZONE_PATH)) {
             try {
-                ZoneId.of(req.getParameter(TIME_ZONE_PATH));
+                ZoneId.of(req.getParameter(Utils.TIME_ZONE_PATH));
             } catch (DateTimeException exception) {
                 res.setContentType("text/html: charset=utf-8");
                 res.getWriter().write("INVALID TIME ZONE");

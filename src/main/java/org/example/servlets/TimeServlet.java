@@ -12,14 +12,13 @@ import java.time.format.DateTimeFormatter;
 
 @WebServlet(value = "/time")
 public class TimeServlet extends HttpServlet {
-    public static final String TIME_ZONE_PATH = "timezone";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String rowLocalDateTime;
         StringBuilder stringBuilder = new StringBuilder();
-        if (Utils.hasParameter(req, TIME_ZONE_PATH)) {
-            String zoneId = req.getParameter(TIME_ZONE_PATH);
+        if (Utils.hasParameter(req, Utils.TIME_ZONE_PATH)) {
+            String zoneId = req.getParameter(Utils.TIME_ZONE_PATH);
             rowLocalDateTime = LocalDateTime.now(ZoneId.of(zoneId))
                     .format(DateTimeFormatter
                             .ofPattern("yyyy-MM-dd HH:mm:ss"));
