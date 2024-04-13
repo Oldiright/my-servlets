@@ -5,9 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @WebServlet(value = "/time")
@@ -16,13 +17,16 @@ public class TimeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        String[] rowLocalDateTime = localDateTime.toString().split("T");
+        String rowLocalDateTime;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(rowLocalDateTime[0]).append(" ").append(rowLocalDateTime[1].split("\\.")[0]);
         if (hasParameter(req, TIME_ZONE_PATH)) {
-            stringBuilder.append(" ").append(req.getParameter(TIME_ZONE_PATH));
+            String zoneId = req.getParameter(TIME_ZONE_PATH);
+            rowLocalDateTime = LocalDateTime.now(ZoneId.of(zoneId)).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            stringBuilder.append(rowLocalDateTime);
+            stringBuilder.append(" ").append(zoneId);
         } else {
+            rowLocalDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            stringBuilder.append(rowLocalDateTime);
             stringBuilder.append(" UTC");
         }
         resp.setContentType("text/html: charset=utf-8");

@@ -1,2 +1,11 @@
 
-E	java:S106"+Replace this use of System.out by a logger.(‚ŞÏ¥ıÿÿÿÿ
+L	java:S106
+"+Replace this use of System.out by a logger.(‚ŞÏ¥ıÿÿÿÿ8è‰¢¹í1
+e
+java:S3986"HMake sure that week Year "YYYY" is expected here instead of Year "yyyy".(ì§¬Ÿ8é‰¢¹í1
+L	java:S106"+Replace this use of System.out by a logger.(†¤‚üÿÿÿÿ8ê‰¢¹í1
+G	java:S106"+Replace this use of System.out by a logger.(™Úˆ¸8ê‰¢¹í1
+e
+java:S3986"HMake sure that week Year "YYYY" is expected here instead of Year "yyyy".(™Úˆ¸8ë‰¢¹í1
+Q
+java:S1128"/Remove this unused import 'java.util.TimeZone'.(à‡Õùÿÿÿÿ8ë‰¢¹í1
